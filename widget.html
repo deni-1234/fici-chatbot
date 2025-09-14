@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FiCi Chatbot</title>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    #chatbox { border:1px solid #ddd; border-radius:8px; padding:10px; width:300px; }
+    #chatlog { height:260px; overflow-y:auto; padding:6px; background:#fafafa; border:1px solid #eee; border-radius:6px; }
+    .me { text-align:right; margin:6px 0; }
+    .bot { text-align:left; margin:6px 0; }
+    .msg { display:inline-block; padding:8px 10px; border-radius:14px; max-width:90%; }
+    .me .msg { background:#d7ebff; }
+    .bot .msg { background:#f0f0f0; }
+    #bar { margin-top:8px; display:flex; gap:6px; }
+    #msg { flex:1; padding:8px; border-radius:6px; border:1px solid #ccc; }
+    button { padding:8px 10px; border:1px solid #2b6cb0; background:#2b6cb0; color:white; border-radius:6px; cursor:pointer; }
+    button:disabled { opacity:0.6; cursor:not-allowed; }
+    small { color:#666; }
+  </style>
+</head>
+<body>
+  <div id="chatbox">
+    <div style="margin-bottom:6px;"><strong>FiCi Chatbot</strong><br/><small>Membantu belajar di {course_name}</small></div>
+    <div id="chatlog"></div>
+    <div id="bar">
+      <input id="msg" type="text" placeholder="Tanya saya (contoh: materi, fici)"/>
+      <button id="send" onclick="sendMsg()">Kirim</button>
+    </div>
+  </div>
+
+  <script>
+  const chatlog = document.getElementById('chatlog');
+  const input = document.getElementById('msg');
+  const btn = document.getElementById('send');
+
+  function addBubble(text, who) {
+    const row = document.createElement('div');
+    row.className = who;
+    const b = document.createElement('div');
+    b.className = 'msg';
+    b.textContent = text;
+    row.appendChild(b);
+    chatlog.appendChild(row);
+    chatlog.scrollTop = chatlog.scrollHeight;
+  }
+
+  async function sendMsg() {
+    const msg = input.value.trim();
+    if(!msg) return;
+    addBubble(msg, 'me');
+    input.value='';
+    btn.disabled = true;
+    try {
+      const res = await fetch('/api/chat', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({message: msg})
+      });
+      const data = await res.json();
+      addBubble(data.response, 'bot');
+    } catch(e) {
+      addBubble('Maaf, layanan sedang sibuk. Coba lagi nanti.', 'bot');
+    } finally {
+      btn.disabled = false;
+      input.focus();
+    }
+  }
+
+  // greet
+  addBubble('Halo! Saya Chatbot FiCi. Ketik: halo, materi, fici, motivasi, bantuan.', 'bot');
+  </script>
+</body>
+</html>
