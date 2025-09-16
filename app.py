@@ -88,13 +88,24 @@ def ask_llm_with_context(user_text: str) -> str:
     except Exception:
         return ask_llm(user_text)
 
-@app.get('/')
+# ============================
+# ROUTES: Root, Health, Chat
+# ============================
+
+@app.get("/")
 def root():
     return "FiCi Chatbot is running. Open /widget.html for the chat widget."
 
-@app.post('/api/chat')
+
+@app.get("/healthz")
+def healthz():
+    return jsonify({"status": "ok"}), 200
+
+
+@app.post("/api/chat")
 def chat():
     try:
+        # Ambil input user
         data = request.get_json(silent=True) or {}
         raw = data.get("message") or data.get("text") or data.get("query") or ""
         user_text = (raw or "").strip()
@@ -114,16 +125,15 @@ def chat():
 
         # ---------- lookup rule-based dari responses.json ----------
         def lookup(key: str):
-            if key in RESPONSES:                       # exact match
-                return RESPONSES[key]
-            for k in RESPONSES.keys():                 # fuzzy sederhana
+            if key in RESPONSES:
+                return RESPONSES[key]  # exact match
+            for k in RESPONSES.keys():
                 if k in key:
-                    return RESPONSES[k]
+                    return RESPONSES[k]  # fuzzy sederhana
             return None
 
         reply = lookup(norm)
         if reply:
-            # placeholder dinamis jika dipakai di responses.json
             reply = reply.replace("{course_name}", "FiCi Academy") \
                          .replace("{course_url}", "https://program.jaemth.org/course/view.php?id=3")
             return jsonify({"reply": reply})
@@ -148,58 +158,10 @@ def chat():
             temperature=0.35,
             max_tokens=380,
         )
+
         ai_text = (resp.choices[0].message.content or "").strip()
         return jsonify({"reply": ai_text or "Maaf, saya belum bisa menjawab itu. Coba ketik: bantuan."})
 
     except Exception as e:
-        # Log error ke console Render (Events/Logs) agar mudah didiagnosis
         print("AI error:", e)
         return jsonify({"reply": "Maaf, AI sedang bermasalah. Coba lagi nanti atau ketik: bantuan."})
-
-# Static: widget
-@app.get('/widget.html')
-def widget():
-    return send_from_directory('.', 'widget.html')
-
-# ==========================
-# ROUTES (Root, Chat, Health)
-# ==========================
-
-@app.get("/")
-def root():
-    return "FiCi Chatbot is running. Open /widget.html for the chat widget."
-
-@app.post("/api/chat")
-def chat():
-    try:
-        data = request.get_json(silent=True) or {}
-        user_text = data.get("message", "").strip()
-        if not user_text:
-            return jsonify({"reply": "Maaf, pesan kosong. Coba ketik sesuatu."})
-
-        # Siapkan prompt
-        system_prompt = "Anda adalah Chatbot FiCi. Jawab secara singkat, ramah, dan relevan dengan kursus."
-        messages = [{"role": "system", "content": system_prompt}]
-        if CONTEXT_FICI:
-            messages.append({"role": "system", "content": "Konteks kursus (ringkas):\n" + CONTEXT_FICI})
-        messages.append({"role": "user", "content": user_text})
-
-        # Panggil OpenAI
-        resp = client.chat.completions.create(
-            model="gpt-4o-mini",  # Gunakan gpt-4o-mini agar cepat & murah
-            messages=messages,
-            temperature=0.35,
-            max_tokens=380,
-        )
-        ai_text = (resp.choices[0].message.content or "").strip()
-        return jsonify({"reply": ai_text or "Maaf, saya belum bisa menjawab itu. Coba ketik: bantuan."})
-
-    except Exception as e:
-        # Log error ke console agar mudah dicek di Render Logs
-        print("AI error:", e)
-        return jsonify({"reply": "Maaf, AI sedang bermasalah. Coba lagi nanti atau ketik: bantuan."})
-
-@app.get("/healthz")
-def healthz():
-    return jsonify({"ok": True})
-
