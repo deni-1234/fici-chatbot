@@ -6,13 +6,16 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 app = Flask(__name__, static_folder='.', static_url_path='')
 
-# Aktifkan CORS hanya jika di server Render (produksi)
+# ✅ Aktifkan CORS hanya jika di server Render (produksi)
 if os.getenv("RENDER"):
     from flask_cors import CORS
-    CORS(app)
-    print("✅ CORS aktif (mode produksi)")
+    CORS(app, resources={
+        r"/*": {"origins": "https://program.jaemth.org"}
+    })
+    print("✅ CORS aktif untuk https://program.jaemth.org (produksi)")
 else:
     print("🚧 CORS nonaktif (mode lokal)")
+
 
 # Muat konteks kursus (opsional tapi dianjurkan)
 CONTEXT_FICI = ""
