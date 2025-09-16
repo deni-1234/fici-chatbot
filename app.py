@@ -2,6 +2,17 @@ from flask import Flask, request, jsonify, send_from_directory
 import json, os
 import openai
 
+from openai import OpenAI
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
+# Muat konteks kursus (opsional tapi dianjurkan)
+CONTEXT_FICI = ""
+try:
+    with open(os.path.join(os.path.dirname(__file__), 'data', 'context_fici.txt'), 'r', encoding='utf-8') as f:
+        CONTEXT_FICI = f.read()
+except FileNotFoundError:
+    CONTEXT_FICI = ""
+
 # set API key dari environment
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
