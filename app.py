@@ -13,9 +13,6 @@ try:
 except FileNotFoundError:
     CONTEXT_FICI = ""
 
-# set API key dari environment
-openai.api_key = os.getenv("OPENAI_API_KEY")
-
 # ---- Flask ----
 app = Flask(__name__, static_folder='.', static_url_path='')
 
