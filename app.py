@@ -46,7 +46,7 @@ def ask_llm(user_text: str) -> str:
     """Fallback ke LLM tanpa konteks."""
     try:
         resp = client.chat.completions.create(
-            model="gpt-4o",
+            model="gpt-4o-mini",
             messages=[
                 {"role": "system", "content": SYSTEM_PROMPT},
                 {"role": "user", "content": user_text}
@@ -64,7 +64,7 @@ def ask_llm_with_context(user_text: str) -> str:
         return ask_llm(user_text)
     try:
         resp = client.chat.completions.create(
-            model="gpt-4o",
+            model="gpt-4o-mini",
             messages=[
                 {"role": "system", "content": SYSTEM_PROMPT},
                 {"role": "system", "content": "Konteks kursus (ringkas):\n" + CONTEXT_FICI},
@@ -132,7 +132,7 @@ def chat():
         messages.append({"role": "user", "content": user_text})
 
         resp = client.chat.completions.create(
-            model="gpt-4o",
+            model="gpt-4o-mini",
             messages=messages,
             temperature=0.35,
             max_tokens=380,
