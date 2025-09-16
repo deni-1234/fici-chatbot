@@ -1,29 +1,41 @@
 {
-  "halo": "Halo! Selamat datang di FiCi Academy. Saya siap membantu. Coba ketik: materi, fici, nilai, literasi politik, kohesi sosial, tugas, kuis, h5p, motivasi, bantuan.",
-  "hai": "Halo! Selamat datang di FiCi Academy. Ketik: materi, fici, nilai, literasi politik, kohesi sosial, tugas, kuis, h5p, motivasi, bantuan.",
-  "hello": "Halo! Selamat datang di FiCi Academy. Ketik: materi, fici, nilai, literasi politik, kohesi sosial, tugas, kuis, h5p, motivasi, bantuan.",
+  "halo": "👋 Halo! Selamat datang di FiCi Academy. Saya siap membantu. Coba ketik: materi, fici, nilai, literasi politik, kohesi sosial, solidaritas, toleransi, dialog, empati, gotong royong.",
+  "hai": "👋 Hai! Selamat datang di FiCi Academy. Ketik salah satu topik: fici, nilai, literasi politik, kohesi sosial, solidaritas, toleransi, dialog, empati, gotong royong.",
+  "hello": "👋 Hello! Welcome to FiCi Academy. Type: fici, values, political literacy, social cohesion, solidarity, tolerance, dialogue, empathy.",
 
-  "bantuan": "Perintah cepat: \n• halo — sapaan\n• materi — ringkasan modul\n• fici — apa itu FiCi\n• nilai — nilai interrelasional FiCi\n• literasi politik — pengantar singkat\n• kohesi sosial — pengantar singkat\n• tugas — daftar tugas/akhir\n• kuis — info kuis\n• h5p — simulasi pemilu kampus\n• motivasi — penguatan belajar\n• kontak — narahubung pengajar",
+  "bantuan": "📌 Perintah cepat: \n• halo — sapaan\n• fici — definisi\n• nilai — nilai inti FiCi\n• literasi politik\n• kohesi sosial\n• solidaritas\n• toleransi\n• dialog lintas identitas\n• empati\n• gotong royong\n\nCoba ketik salah satunya.",
 
-  "materi": "Ringkasan modul FiCi Academy (Course ID 3):\n1) Pengenalan FiCi & Literasi Politik — https://program.jaemth.org/course/view.php?id=3#section-1\n2) Nilai-Nilai Interrelasional dalam Masyarakat — https://program.jaemth.org/course/view.php?id=3#section-2\n3) Literasi Politik & Keterlibatan Warga — https://program.jaemth.org/course/view.php?id=3#section-3\nSilakan buka tautan tiap bagian untuk materi lengkap, forum, dan aktivitas.",
+  "materi": "📘 <b>Materi FiCi Academy</b>\nModul FiCi mencakup literasi politik etis, kohesi sosial, dan nilai interrelasional berbasis iman. Setiap modul memiliki tugas, kuis, dan proyek aksi sosial kampus.",
 
-  "fici": "FiCi = Faith-Inspired Interrelational Citizenship. Fokusnya membentuk warga yang beriman, kritis, dan kolaboratif melalui: (1) literasi politik etis, (2) relasi lintas identitas, (3) proyek sosial-kolaboratif. Lihat pengantar kursus: https://program.jaemth.org/course/view.php?id=3",
+  "fici": "🌱 <b>FiCi (Faith-Inspired Interrelational Citizenship)</b>\nFiCi adalah pendekatan pendidikan kewargaan berbasis iman untuk membentuk warga yang beriman, kritis, peduli, dan kolaboratif.",
 
-  "nilai": "Nilai interrelasional FiCi: kepercayaan (trust), toleransi, inklusivitas, solidaritas, dialog, dan tanggung jawab bersama. Praktikkan dalam diskusi, proyek tim, dan etika digital di LMS.",
+  "nilai": "💡 <b>Nilai-Nilai Inti FiCi</b>\nKepercayaan (trust), toleransi, solidaritas, inklusivitas, dialog, dan tanggung jawab sosial.",
 
-  "literasi politik": "Literasi politik = kemampuan memahami aktor, institusi, hak–kewajiban warga, proses kebijakan, dan etika partisipasi. Di FiCi Academy, kita menekankan cara berpikir kritis, verifikasi informasi, dan dialog konstruktif. Buka modul: https://program.jaemth.org/course/view.php?id=3#section-3",
+  "literasi politik": "📊 <b>Literasi Politik</b>\nKemampuan memahami aktor, institusi, hak-kewajiban warga, dan proses kebijakan publik secara etis dan kritis.",
 
-  "kohesi sosial": "Kohesi sosial = rasa percaya, rasa memiliki, dan kerjasama lintas identitas. Orientasinya: mengurangi polarisasi, memperkuat jejaring, dan menyelesaikan masalah bersama. Lihat modul nilai-nilai interrelasional: https://program.jaemth.org/course/view.php?id=3#section-2",
+  "kohesi sosial": "🤝 <b>Kohesi Sosial</b>\nRasa saling percaya, kepedulian bersama, dan keterhubungan antaranggota masyarakat yang beragam.",
 
-  "tugas": "Tugas utama FiCi Academy:\n• Forum ide: “Membangun komunitas lintas identitas”\n• Proyek akhir: Rancang kampanye media sosial tentang FiCi (etika digital, pesan damai)\n• Refleksi pribadi: pengalaman inklusif & dialog lintas identitas\nDetail dan tenggat: cek setiap bagian kursus di LMS (ID 3).",
+  "solidaritas": "🤗 <b>Solidaritas</b>\nKepedulian aktif terhadap kesejahteraan bersama, berani memperjuangkan keadilan, dan tidak membiarkan siapa pun tertinggal.",
 
-  "kuis": "Kuis singkat tersedia di tiap modul (konsep dasar, nilai interrelasional, literasi politik). Akses dari bagian materi masing-masing: https://program.jaemth.org/course/view.php?id=3",
+  "toleransi": "🫱🏽‍🫲🏼 <b>Toleransi</b>\nMenghargai perbedaan, menahan diri dari kekerasan, dan membangun relasi damai walau tidak selalu sependapat.",
 
-  "h5p": "Aktivitas H5P: Simulasi Pemilu Kampus (alur bercabang). Ikuti instruksi pada bagian aktivitas interaktif. Jika terjadi error H5P, pastikan plugin aktif dan file .h5p diunggah dari editor H5P Moodle.",
+  "dialog lintas identitas": "💬 <b>Dialog Lintas Identitas</b>\nRuang aman untuk saling mendengar, memahami, dan menghargai perbedaan latar belakang, budaya, atau agama.",
 
-  "motivasi": "Belajar adalah proses bertumbuh: fokus, konsisten, dan terbuka berdialog. Kecilkan distraksi, rencanakan waktu belajar, dan jadikan perbedaan sebagai kesempatan bertemu kebaikan bersama. Semangat—Anda bagian dari perubahan! 💪",
+  "empati": "💙 <b>Empati</b>\nKemampuan merasakan pengalaman orang lain dan menanggapinya dengan kasih, bukan menghakimi.",
 
-  "kontak": "Narahubung FiCi Academy: Dosen/Asisten Pengajar melalui pesan di LMS (Messaging Moodle) atau forum pengumuman. Untuk kendala teknis Moodle/H5P, hubungi admin kursus.",
+  "gotong royong": "👐 <b>Gotong Royong</b>\nSemangat bekerja sama untuk kepentingan bersama di atas kepentingan pribadi.",
 
-  "unknown": "Maaf, saya belum paham pertanyaan Anda. Coba ketik: bantuan, materi, fici, nilai, literasi politik, kohesi sosial, tugas, kuis, h5p, motivasi."
+  "inklusi sosial": "🌈 <b>Inklusi Sosial</b>\nMenjamin semua orang, tanpa diskriminasi, memiliki akses dan kesempatan berpartisipasi dalam kehidupan sosial.",
+  
+  "keadilan sosial": "⚖️ <b>Keadilan Sosial</b>\nMemberi perhatian khusus pada kelompok rentan agar setiap orang mendapat perlakuan adil.",
+
+  "kepemimpinan etis": "🧭 <b>Kepemimpinan Etis</b>\nKepemimpinan yang berlandaskan nilai integritas, tanggung jawab, dan pelayanan kepada sesama.",
+
+  "tanggung jawab warga": "📍 <b>Tanggung Jawab Warga</b>\nKesadaran untuk ikut menjaga ketertiban, lingkungan, dan kesejahteraan bersama.",
+
+  "kebinekaan": "🌏 <b>Kebinekaan</b>\nSikap menghargai keberagaman budaya, agama, bahasa, dan identitas lokal dalam bingkai persatuan.",
+
+  "proyek sosial": "🛠️ <b>Proyek Sosial</b>\nAksi nyata yang dilakukan mahasiswa untuk membangun solidaritas dan menyelesaikan masalah sosial di kampus atau masyarakat.",
+
+  "refleksi iman": "⛪ <b>Refleksi Iman</b>\nMenemukan inspirasi spiritual dari iman pribadi untuk membangun perdamaian, keadilan, dan kerukunan bersama."
 }
