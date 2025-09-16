@@ -18,21 +18,33 @@ def root():
 @app.post('/api/chat')
 def chat():
     data = request.get_json(silent=True) or {}
-    msg = (data.get('message') or '').lower().strip()
+    # Terima berbagai nama field agar kompatibel dengan widget lama/baru
+    raw = data.get('message') or data.get('text') or data.get('query') or ''
+    text = (raw or '').strip().lower()
 
-    # Default reply
-    reply = "Maaf, saya belum mengerti pertanyaan Anda. Coba ketik: halo, materi, fici, motivasi, bantuan."
+    # --- sinonim ringan / normalisasi kata ---
+    aliases = {
+        'hai': 'halo', 'hi': 'halo', 'hello': 'halo',
+        'apa itu fici': 'fici', 'fic': 'fici', 'fi ci': 'fici',
+        'quiz': 'kuis', 'nilai-nilai': 'nilai', 'nilai fici': 'nilai',
+        'literasi': 'literasi politik', 'politik': 'literasi politik',
+        'kohesi': 'kohesi sosial'
+    }
+    text = aliases.get(text, text)
 
-    # Simple keyword-based matching
-    for key, val in RESPONSES.items():
-        if key in msg:
-            reply = val
-            break
+    # Pastikan kunci responses lowercase
+    # (jika file sudah lowercase, langkah ini aman-aman saja)
+    def lookup(key):
+        if key in RESPONSES:
+            return RESPONSES[key]
+        # cari kunci yang merupakan substring di input
+        for k in RESPONSES.keys():
+            if k in key:
+                return RESPONSES[k]
+        return None
 
-    # Dynamic injections
-    reply = reply.replace("{COURSE_NAME}", COURSE_NAME).replace("{COURSE_URL}", COURSE_URL)
-
-    return jsonify({"response": reply})
+    reply = lookup(text) or RESPONSES.get('unknown', 'Maaf, saya belum paham. Coba ketik: bantuan.')
+    return jsonify({'reply': reply})
 
 # Serve widget.html and any static assets from root via static_folder config
 # (No extra route needed)
