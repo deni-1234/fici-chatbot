@@ -1,1 +1,10 @@
+{
+  "halo": "Halo! Saya {course_name}. Ketik: bantuan, materi, nilai, kuis, tugas, atau jadwal. Lihat juga {course_url}.",
+  "bantuan": "Perintah cepat: materi, nilai, kuis, tugas, jadwal, kontak. Jika pertanyaan di luar FiCi, saya akan menolak sopan.",
+  "materi": "Materi FiCi tersedia di {course_url}. Bagian: Literasi Politik, Kohesi Sosial, Nilai Interrelasional, Proyek Sosial.",
+  "nilai": "Nilai inti FiCi: kepercayaan, toleransi, inklusivitas, solidaritas, dialog; selaras dengan Ajaran Sosial Katolik: martabat manusia, kebaikan bersama, subsidiaritas, solidaritas, opsi bagi yang miskin, keadilan sosial, partisipasi, keutuhan ciptaan, promosi perdamaian, hak & kewajiban.",
+  "kuis": "Kuis tersedia di LMS {course_url} » bagian Kuis. Ketik: materi untuk modul.",
+  "penolakan_umum": "Saya chatbot kursus FiCi. Untuk pertanyaan umum silakan cari di sumber lain.",
+  "jadwal": "Jadwal kegiatan dan tenggat akan diumumkan di {course_url}."
+}
 
