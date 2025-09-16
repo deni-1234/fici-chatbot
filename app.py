@@ -8,7 +8,7 @@ app = Flask(__name__, static_folder='.', static_url_path='')
 with open(os.path.join(os.path.dirname(__file__), 'data', 'responses.json'), 'r', encoding='utf-8') as f:
     RESPONSES = json.load(f)
 
-COURSE_NAME = "Kursus Katekis"
+COURSE_NAME = "FiCi Academy"
 COURSE_URL = "https://program.jaemth.org/course/view.php?id=2"
 
 @app.get('/')
