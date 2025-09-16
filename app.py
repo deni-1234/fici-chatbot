@@ -85,27 +85,64 @@ def root():
 def chat():
     try:
         data = request.get_json(silent=True) or {}
-        user_message = data.get("message", "")
+        raw = data.get("message") or data.get("text") or data.get("query") or ""
+        user_text = (raw or "").strip()
+        if not user_text:
+            return jsonify({"reply": "Pesan kosong. Coba ketik sesuatu."})
 
-        if not user_message:
-            return jsonify({"reply": "Tidak ada pesan yang dikirim."})
+        # ---------- normalisasi & sinonim ringan ----------
+        norm = user_text.lower()
+        aliases = {
+            "hai": "halo", "hello": "halo", "hi": "halo",
+            "apa itu fici": "fici", "fic": "fici", "fi ci": "fici",
+            "quiz": "kuis", "nilai-nilai": "nilai", "nilai fici": "nilai",
+            "literasi": "literasi politik", "politik": "literasi politik",
+            "kohesi": "kohesi sosial",
+        }
+        norm = aliases.get(norm, norm)
 
-        # Kirim pertanyaan user ke OpenAI
-        response = openai.chat.completions.create(
-            model="gpt-4o",
-            messages=[
-                {"role": "system", "content": "Kamu adalah chatbot pembelajaran untuk FiCi Academy."},
-                {"role": "user", "content": user_message}
-            ],
-            max_tokens=300,
-            temperature=0.7
+        # ---------- lookup rule-based dari responses.json ----------
+        def lookup(key: str):
+            if key in RESPONSES:                       # exact match
+                return RESPONSES[key]
+            for k in RESPONSES.keys():                 # fuzzy sederhana
+                if k in key:
+                    return RESPONSES[k]
+            return None
+
+        reply = lookup(norm)
+        if reply:
+            # placeholder dinamis jika dipakai di responses.json
+            reply = reply.replace("{course_name}", "FiCi Academy") \
+                         .replace("{course_url}", "https://program.jaemth.org/course/view.php?id=3")
+            return jsonify({"reply": reply})
+
+        # ---------- fallback ke AI + konteks kursus ----------
+        system_prompt = (
+            "Anda adalah Chatbot FiCi untuk kursus 'FiCi Academy — Literasi Politik & Kohesi Sosial'. "
+            "Jawab singkat, jelas, ramah, dan aman. Fokus pada literasi politik etis, "
+            "nilai interrelasional (kepercayaan, toleransi, inklusivitas, solidaritas, dialog), "
+            "dan aktivitas kursus. Jika tidak tahu, katakan tidak tahu dan arahkan ke modul "
+            "(ketik: bantuan/materi/nilai) atau ke halaman kursus."
         )
 
-        bot_reply = response.choices[0].message.content.strip()
-        return jsonify({"reply": bot_reply})
+        messages = [{"role": "system", "content": system_prompt}]
+        if CONTEXT_FICI:
+            messages.append({"role": "system", "content": "Konteks kursus (ringkas):\n" + CONTEXT_FICI})
+        messages.append({"role": "user", "content": user_text})
+
+        resp = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=messages,
+            temperature=0.35,
+            max_tokens=380,
+        )
+        ai_text = (resp.choices[0].message.content or "").strip()
+        return jsonify({"reply": ai_text or "Maaf, saya belum bisa menjawab itu. Coba ketik: bantuan."})
 
     except Exception as e:
-        print("Error:", e)
+        # Log error ke console Render (Events/Logs) agar mudah didiagnosis
+        print("AI error:", e)
         return jsonify({"reply": "Maaf, AI sedang bermasalah. Coba lagi nanti atau ketik: bantuan."})
 
 # Static: widget
