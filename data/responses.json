@@ -1,7 +1,29 @@
 {
-  "halo": "Halo! Selamat datang di {{COURSE_NAME}}. Saya siap membantu. Coba ketik: materi, fici, motivasi, bantuan.",
-  "materi": "Silakan buka halaman kursus: {{COURSE_URL}}. Mulailah dari Materi 1, lalu tandai selesai.",
-  "fici": "Nilai FiCi menekankan gotong royong, tepo seliro, rembug desa, dan guyub rukun dalam belajar dan bermasyarakat.",
-  "motivasi": "Terus semangat! Belajar Anda berbuah pada pelayanan yang lebih penuh kasih dan adil.",
-  "bantuan": "Butuh bantuan teknis Moodle? Coba lihat tombol 'Tandai selesai' tiap materi dan forum pengumuman. Jika masih kesulitan, hubungi pengajar di halaman kursus."
+  "halo": "Halo! Selamat datang di FiCi Academy. Saya siap membantu. Coba ketik: materi, fici, nilai, literasi politik, kohesi sosial, tugas, kuis, h5p, motivasi, bantuan.",
+  "hai": "Halo! Selamat datang di FiCi Academy. Ketik: materi, fici, nilai, literasi politik, kohesi sosial, tugas, kuis, h5p, motivasi, bantuan.",
+  "hello": "Halo! Selamat datang di FiCi Academy. Ketik: materi, fici, nilai, literasi politik, kohesi sosial, tugas, kuis, h5p, motivasi, bantuan.",
+
+  "bantuan": "Perintah cepat: \n• halo — sapaan\n• materi — ringkasan modul\n• fici — apa itu FiCi\n• nilai — nilai interrelasional FiCi\n• literasi politik — pengantar singkat\n• kohesi sosial — pengantar singkat\n• tugas — daftar tugas/akhir\n• kuis — info kuis\n• h5p — simulasi pemilu kampus\n• motivasi — penguatan belajar\n• kontak — narahubung pengajar",
+
+  "materi": "Ringkasan modul FiCi Academy (Course ID 3):\n1) Pengenalan FiCi & Literasi Politik — https://program.jaemth.org/course/view.php?id=3#section-1\n2) Nilai-Nilai Interrelasional dalam Masyarakat — https://program.jaemth.org/course/view.php?id=3#section-2\n3) Literasi Politik & Keterlibatan Warga — https://program.jaemth.org/course/view.php?id=3#section-3\nSilakan buka tautan tiap bagian untuk materi lengkap, forum, dan aktivitas.",
+
+  "fici": "FiCi = Faith-Inspired Interrelational Citizenship. Fokusnya membentuk warga yang beriman, kritis, dan kolaboratif melalui: (1) literasi politik etis, (2) relasi lintas identitas, (3) proyek sosial-kolaboratif. Lihat pengantar kursus: https://program.jaemth.org/course/view.php?id=3",
+
+  "nilai": "Nilai interrelasional FiCi: kepercayaan (trust), toleransi, inklusivitas, solidaritas, dialog, dan tanggung jawab bersama. Praktikkan dalam diskusi, proyek tim, dan etika digital di LMS.",
+
+  "literasi politik": "Literasi politik = kemampuan memahami aktor, institusi, hak–kewajiban warga, proses kebijakan, dan etika partisipasi. Di FiCi Academy, kita menekankan cara berpikir kritis, verifikasi informasi, dan dialog konstruktif. Buka modul: https://program.jaemth.org/course/view.php?id=3#section-3",
+
+  "kohesi sosial": "Kohesi sosial = rasa percaya, rasa memiliki, dan kerjasama lintas identitas. Orientasinya: mengurangi polarisasi, memperkuat jejaring, dan menyelesaikan masalah bersama. Lihat modul nilai-nilai interrelasional: https://program.jaemth.org/course/view.php?id=3#section-2",
+
+  "tugas": "Tugas utama FiCi Academy:\n• Forum ide: “Membangun komunitas lintas identitas”\n• Proyek akhir: Rancang kampanye media sosial tentang FiCi (etika digital, pesan damai)\n• Refleksi pribadi: pengalaman inklusif & dialog lintas identitas\nDetail dan tenggat: cek setiap bagian kursus di LMS (ID 3).",
+
+  "kuis": "Kuis singkat tersedia di tiap modul (konsep dasar, nilai interrelasional, literasi politik). Akses dari bagian materi masing-masing: https://program.jaemth.org/course/view.php?id=3",
+
+  "h5p": "Aktivitas H5P: Simulasi Pemilu Kampus (alur bercabang). Ikuti instruksi pada bagian aktivitas interaktif. Jika terjadi error H5P, pastikan plugin aktif dan file .h5p diunggah dari editor H5P Moodle.",
+
+  "motivasi": "Belajar adalah proses bertumbuh: fokus, konsisten, dan terbuka berdialog. Kecilkan distraksi, rencanakan waktu belajar, dan jadikan perbedaan sebagai kesempatan bertemu kebaikan bersama. Semangat—Anda bagian dari perubahan! 💪",
+
+  "kontak": "Narahubung FiCi Academy: Dosen/Asisten Pengajar melalui pesan di LMS (Messaging Moodle) atau forum pengumuman. Untuk kendala teknis Moodle/H5P, hubungi admin kursus.",
+
+  "unknown": "Maaf, saya belum paham pertanyaan Anda. Coba ketik: bantuan, materi, fici, nilai, literasi politik, kohesi sosial, tugas, kuis, h5p, motivasi."
 }
