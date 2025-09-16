@@ -162,6 +162,45 @@ def chat():
 def widget():
     return send_from_directory('.', 'widget.html')
 
+# ==========================
+# ROUTES (Root, Chat, Health)
+# ==========================
+
+@app.get("/")
+def root():
+    return "FiCi Chatbot is running. Open /widget.html for the chat widget."
+
+@app.post("/api/chat")
+def chat():
+    try:
+        data = request.get_json(silent=True) or {}
+        user_text = data.get("message", "").strip()
+        if not user_text:
+            return jsonify({"reply": "Maaf, pesan kosong. Coba ketik sesuatu."})
+
+        # Siapkan prompt
+        system_prompt = "Anda adalah Chatbot FiCi. Jawab secara singkat, ramah, dan relevan dengan kursus."
+        messages = [{"role": "system", "content": system_prompt}]
+        if CONTEXT_FICI:
+            messages.append({"role": "system", "content": "Konteks kursus (ringkas):\n" + CONTEXT_FICI})
+        messages.append({"role": "user", "content": user_text})
+
+        # Panggil OpenAI
+        resp = client.chat.completions.create(
+            model="gpt-4o-mini",  # Gunakan gpt-4o-mini agar cepat & murah
+            messages=messages,
+            temperature=0.35,
+            max_tokens=380,
+        )
+        ai_text = (resp.choices[0].message.content or "").strip()
+        return jsonify({"reply": ai_text or "Maaf, saya belum bisa menjawab itu. Coba ketik: bantuan."})
+
+    except Exception as e:
+        # Log error ke console agar mudah dicek di Render Logs
+        print("AI error:", e)
+        return jsonify({"reply": "Maaf, AI sedang bermasalah. Coba lagi nanti atau ketik: bantuan."})
+
 @app.get("/healthz")
 def healthz():
     return jsonify({"ok": True})
+
