@@ -137,6 +137,71 @@ def chat():
             reply = reply.replace("{course_name}", "FiCi Academy") \
                          .replace("{course_url}", "https://program.jaemth.org/course/view.php?id=3")
             return jsonify({"reply": reply})
+# ---------- deteksi pertanyaan umum (di luar topik FiCi) ----------
+fici_keywords = [
+    "fici", "fi ci", "faith-inspired", "literasi politik",
+    "kohesi sosial", "nilai", "interrelasional", "solidaritas",
+    "toleransi", "inklusivitas", "dialog", "pro-sosial", 
+    “martabat manusia”, “kebaikan bersama”, “subsidiaritas”, “hak dan kewajiban warga”, “keberpihakan kepada kaum miskin”, 
+“keutuhanciptaan”, “kesejahteraan umum”, “keadilan distributif”, “rekonsiliasi”, “perdamaian sejati”, “persaudaraan sejati”, 
+“bonum commune”,
+“martabat manusia”, “kebaikan bersama”, “subsidiaritas”, 
+“hak dan kewajiban warga”, “keberpihakan kepada kaum miskin”, “keutuhanciptaan”, “kesejahteraan umum”, “keadilan distributif”, “rekonsiliasi”, “perdamaian sejati”
+“persaudaraan sejati”, “bonum commune”
+
+“faith-inspired interrelational citizenship”, “kewarganegaraan interrelasional”, “nilai-nilai fici”,
+“kepercayaan”, “toleransi”, “solidaritas”, “inklusivitas”, “tanggung jawab sosial”, “kebinekaan”,
+
+”literasi politik”, “kesadaran kritis”, “partisipasi aktif”, “kepedulian sosial”, “keterlibatan komunitas”,
+“etika publik”, “kohesi sosial”, “budaya damai”, “moderasi beragama”, “anti-diskriminasi”,
+
+“gotong royong”, “toleran”, “kasih”, “damai”, “tepo seliro”, “tenggang rasa”, “rukun”,
+“musyawarah mufakat”, “rasa hormat antaragama”, “harmoni sosial”, “penghormatan leluhur”,
+“nilai lokal kontekstual”,
+
+“etika berbasis nilai”, “paradigma kritis transformatif”, “pendidikan berbasis proyek sosial”,
+“refleksi iman”,
+
+“spiritualitas kebersamaan”, “spiritualitas pelayanan”, “spiritualitas dialog”, 
+“spiritualitas keterlibatan”, “spiritualitas lintas iman”, “iman yang transformatif”, 
+“nilai keadilan sosial”, “nilai perdamaian”, “nilai kebersamaan”, “nilai kasih”,
+
+“etika global”, “global citizenship”, “civic responsibility”, “civic engagement”, 
+“civic ethics”, “demokrasi partisipatif”, “hak asasi manusia”, “resolusi konflik”, 
+“mediasi sosial”, “komunikasi non-kekerasan”, “etika dialog”, 
+
+“empati”, “resiliensi sosial”, “kecerdasan emosional”, “pengelolaan konflik”, 
+“kesadaran diri”, “kerja sama tim”, “kepemimpinan etis”, “kolaborasi antarbudaya”, 
+“literasi digital etis”, “etika media sosial”, 
+
+“pendidikan karakter”, “pendidikan multikultural”, “pendidikan kontekstual”, 
+“pendidikan transformatif”, “pendidikan berbasis komunitas”, “proyek sosial kampus”, 
+“proyek interkultural”, “refleksi sosial”, “kesalehan sosial”, 
+
+“habitus kewargaan”, “karakter reflektif”, “karakter dialogis”, 
+“karakter solider”, “karakter kolaboratif”, “karakter etis”, “kesadaran ekologis”, 
+“kesadaran sosial”, “kesadaran politik”, “kesadaran spiritual”, “
+
+“kebijaksanaan lokal”, “pengetahuan lokal”, “pengetahuan partisipatif”, “pengetahuan reflektif”, 
+“pengetahuan praksis”, “pengetahuan sosial”, “pengetahuan dialogis”, “pengetahuan spiritual”, 
+“pengetahuan kontekstual”, “pengetahuan transformatif”, “pengetahuan lintas disiplin”, 
+
+“kompetensi dialogal”, “dialog antariman”, “dialog antarbudaya”, “dialog antarwilayah”,
+“dialog antaragama”, “dialog antargenerasi”, “ruang aman (safe space)”,
+“ruang lintas identitas”, “ruang kolaboratif”, “ruang partisipatif”, "rumah bersama",
+
+“rekayasa sosial berbasis nilai”, “inovasi sosial kampus”, “inovasi pembelajaran”,
+“pembelajaran reflektif”, “pembelajaran kolaboratif”, “pembelajaran berbasis masalah”,
+“pembelajaran berbasis proyek”, “pembelajaran kontekstual”, “pembelajaran partisipatif”,
+“pembelajaran lintas disiplin”
+
+]
+
+# Jika teks tidak mengandung salah satu kata kunci FiCi, jangan teruskan ke GPT
+if not any(kw in norm for kw in fici_keywords):
+    return jsonify({
+        "reply": "Saya chatbot kursus FiCi. Untuk pertanyaan umum silakan cari di sumber lain."
+    })
 
         # ---------- fallback ke AI + konteks kursus ----------
         system_prompt = (
