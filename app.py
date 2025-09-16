@@ -84,7 +84,7 @@ def chat():
 
         # Kirim pertanyaan user ke OpenAI
         response = openai.chat.completions.create(
-            model="gpt-4o-mini",
+            model="gpt-4o",
             messages=[
                 {"role": "system", "content": "Kamu adalah chatbot pembelajaran untuk FiCi Academy."},
                 {"role": "user", "content": user_message}
