@@ -75,44 +75,30 @@ def root():
 
 @app.post('/api/chat')
 def chat():
-    data = request.get_json(silent=True) or {}
-    # kompatibel dgn berbagai payload
-    raw = data.get('message') or data.get('text') or data.get('query') or ''
-    text = (raw or '').strip().lower()
+    try:
+        data = request.get_json(silent=True) or {}
+        user_message = data.get("message", "")
 
-    # ---- sinonim & normalisasi ringan ----
-    aliases = {
-        'hai': 'halo', 'hello': 'halo', 'hi': 'halo',
-        'apa itu fici': 'fici', 'fic': 'fici', 'fi ci': 'fici',
-        'quiz': 'kuis', 'nilai fici': 'nilai', 'nilai-nilai': 'nilai',
-        'literasi': 'literasi politik', 'politik': 'literasi politik',
-        'kohesi': 'kohesi sosial'
-    }
-    text = aliases.get(text, text)
+        if not user_message:
+            return jsonify({"reply": "Tidak ada pesan yang dikirim."})
 
-    # ---- lookup rule-based ----
-    def lookup(key):
-        if key in RESPONSES:  # exact
-            return RESPONSES[key]
-        # fuzzy sederhana: cocokkan substring kunci yang ada di input
-        for k in RESPONSES.keys():
-            if k in key:
-                return RESPONSES[k]
-        return None
+        # Kirim pertanyaan user ke OpenAI
+        response = openai.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "system", "content": "Kamu adalah chatbot pembelajaran untuk FiCi Academy."},
+                {"role": "user", "content": user_message}
+            ],
+            max_tokens=300,
+            temperature=0.7
+        )
 
-    reply = lookup(text)
+        bot_reply = response.choices[0].message.content.strip()
+        return jsonify({"reply": bot_reply})
 
-    # inject dinamis (jika dipakai di responses.json)
-    if reply:
-        reply = (reply
-                 .replace("{course_name}", COURSE_NAME)
-                 .replace("{course_url}", COURSE_URL))
-
-    # ---- fallback LLM bila tidak ketemu ----
-    if not reply:
-        reply = ask_llm_with_context(raw)
-
-    return jsonify({'reply': reply})
+    except Exception as e:
+        print("Error:", e)
+        return jsonify({"reply": "Maaf, AI sedang bermasalah. Coba lagi nanti atau ketik: bantuan."})
 
 # Static: widget
 @app.get('/widget.html')
