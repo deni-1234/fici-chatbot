@@ -9,7 +9,7 @@ with open(os.path.join(os.path.dirname(__file__), 'data', 'responses.json'), 'r'
     RESPONSES = json.load(f)
 
 COURSE_NAME = "FiCi Academy"
-COURSE_URL = "https://program.jaemth.org/course/view.php?id=2"
+COURSE_URL = "https://program.jaemth.org/course/view.php?id=3"
 
 @app.get('/')
 def root():
