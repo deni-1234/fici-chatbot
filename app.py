@@ -161,3 +161,7 @@ def chat():
 @app.get('/widget.html')
 def widget():
     return send_from_directory('.', 'widget.html')
+
+@app.get("/healthz")
+def healthz():
+    return jsonify({"ok": True})
